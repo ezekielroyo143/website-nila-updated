@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Settings</title>
+    <link rel="stylesheet" href="./css/admin-settings.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Mac Van Mae</h2>
+          <span>ADMIN PANEL</span>
+        </div>
+
+        <nav>
+          <a href="admin-dashboard.html">Dashboard</a>
+          <a href="admin-rooms.html">Rooms</a>
+          <a href="admin-reservation.html">Reservations</a>
+          <a href="admin-users.html">Users</a>
+          <a href="admin-settings.html" class="active">Settings</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <h1>Settings</h1>
+            <p>Manage your resort and admin settings</p>
+          </div>
+        </header>
+
+        <section class="settings-container">
+          <div class="settings-card">
+            <div class="card-header">
+              <h2>Resort Information</h2>
+              <p>Update the information displayed for your resort.</p>
+            </div>
+
+            <form id="resortSettingsForm">
+              <div class="form-group">
+                <label for="resortName">Resort Name</label>
+                <input
+                  type="text"
+                  id="resortName"
+                  placeholder="Enter resort name"
+                  required
+                />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contactNumber">Contact Number</label>
+                  <input
+                    type="text"
+                    id="contactNumber"
+                    placeholder="Enter contact number"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter email address"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <textarea
+                  id="address"
+                  rows="3"
+                  placeholder="Enter resort address"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="save-btn">
+                Save Resort Information
+              </button>
+
+              <p id="resortMessage" class="message"></p>
+            </form>
+          </div>
+
+          <div class="settings-card">
+            <div class="card-header">
+              <h2>Reservation Settings</h2>
+              <p>Configure your standard check-in and check-out times.</p>
+            </div>
+
+            <form id="reservationSettingsForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="checkIn">Check-in Time</label>
+                  <input type="time" id="checkIn" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="checkOut">Check-out Time</label>
+                  <input type="time" id="checkOut" required />
+                </div>
+              </div>
+
+              <button type="submit" class="save-btn">
+                Save Reservation Settings
+              </button>
+
+              <p id="reservationMessage" class="message"></p>
+            </form>
+          </div>
+
+          <div class="settings-card">
+            <div class="card-header">
+              <h2>Admin Account</h2>
+              <p>Manage your administrator account.</p>
+            </div>
+
+            <div class="account-info">
+              <div>
+                <span class="info-label">Email</span>
+                <strong id="adminEmail">Loading...</strong>
+              </div>
+
+              <div>
+                <span class="info-label">Account Status</span>
+                <strong class="status-active">Active</strong>
+              </div>
+            </div>
+
+            <button id="logoutAccountBtn" class="danger-btn">
+              Logout Account
+            </button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/supabase.js"></script>
+    <script src="./js/admin-settings.js"></script>
+  </body>
+</html>

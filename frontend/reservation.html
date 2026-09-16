@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Make a Reservation</title>
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/reservation.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="./index.html">Mac Van Mae <span>Resort</span></a>
+
+        <button class="nav-toggle" id="navToggle">☰</button>
+
+        <nav id="siteNav">
+          <a href="./index.html">Home</a>
+          <a href="./rooms.html">Rooms</a>
+          <a href="./about.html">About</a>
+          <a href="./reservation.html">Reservation</a>
+        </nav>
+
+        <div class="nav-actions" id="navActions">
+          <a href="./login.html" class="btn">Login</a>
+          <a href="./register.html" class="btn btn-primary">Register</a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="reservation-hero">
+        <div class="container">
+          <p class="eyebrow">RESERVATION</p>
+
+          <h1>Make a Reservation</h1>
+
+          <p>
+            Book your stay at Mac-Van-Mae Resort. Fill in your information below
+            and complete the payment details.
+          </p>
+        </div>
+      </section>
+
+      <section class="reservation-section">
+        <div class="container">
+          <div class="reservation-layout">
+            <div class="reservation-form-card">
+              <div class="section-heading">
+                <p class="eyebrow">GUEST INFORMATION</p>
+                <h2>Your Details</h2>
+              </div>
+
+              <form id="reservationForm">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="firstName"> First Name </label>
+
+                    <input type="text" id="firstName" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="lastName"> Last Name </label>
+
+                    <input type="text" id="lastName" required />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="email"> Email </label>
+
+                    <input type="email" id="email" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone"> Phone Number </label>
+
+                    <input type="tel" id="phone" required />
+                  </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="section-heading small-heading">
+                  <p class="eyebrow">STAY INFORMATION</p>
+
+                  <h2>Your Stay</h2>
+                </div>
+
+                <div class="form-group">
+                  <label for="room"> Select Room </label>
+
+                  <select id="room" required>
+                    <option value="">Loading rooms...</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="checkIn"> Check-in </label>
+
+                    <input type="date" id="checkIn" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="checkOut"> Check-out </label>
+
+                    <input type="date" id="checkOut" required />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="adults"> Adults </label>
+
+                    <input
+                      type="number"
+                      id="adults"
+                      min="1"
+                      value="1"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="children"> Children </label>
+
+                    <input type="number" id="children" min="0" value="0" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="specialRequests"> Special Requests </label>
+
+                  <textarea
+                    id="specialRequests"
+                    placeholder="Optional requests..."
+                  ></textarea>
+                </div>
+
+                <div id="message"></div>
+
+                <button
+                  type="submit"
+                  class="btn btn-primary reservation-submit"
+                >
+                  Continue to Payment
+                </button>
+              </form>
+            </div>
+
+            <aside class="reservation-summary-card">
+              <div class="section-heading">
+                <p class="eyebrow">YOUR BOOKING</p>
+
+                <h2>Reservation Summary</h2>
+              </div>
+
+              <div class="summary-list">
+                <div class="summary-item">
+                  <span>Room</span>
+
+                  <strong id="summaryRoom"> - </strong>
+                </div>
+
+                <div class="summary-item">
+                  <span>Check-in</span>
+
+                  <strong id="summaryCheckIn"> - </strong>
+                </div>
+
+                <div class="summary-item">
+                  <span>Check-out</span>
+
+                  <strong id="summaryCheckOut"> - </strong>
+                </div>
+
+                <div class="summary-item">
+                  <span>Nights</span>
+
+                  <strong id="summaryNights"> 0 </strong>
+                </div>
+
+                <div class="summary-item">
+                  <span>Rate per Night</span>
+
+                  <strong id="summaryRate"> ₱0.00 </strong>
+                </div>
+              </div>
+
+              <div class="summary-total">
+                <span>Total</span>
+
+                <strong id="summaryTotal"> ₱0.00 </strong>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="payment-section" id="paymentSection">
+        <div class="container">
+          <div class="payment-card">
+            <div class="section-heading">
+              <p class="eyebrow">PAYMENT</p>
+
+              <h2>GCash Payment</h2>
+
+              <p>
+                Send the reservation amount through GCash and enter your
+                reference number.
+              </p>
+            </div>
+
+            <div class="payment-content">
+              <div class="qr-box">
+                <div class="sample-label">SAMPLE QR</div>
+
+                <div class="qr-placeholder">
+                  <div class="qr-pattern">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+
+                <p class="qr-note">
+                  Sample QR only. Replace this later with the actual GCash QR
+                  code.
+                </p>
+              </div>
+
+              <div class="payment-details">
+                <div class="payment-total-box">
+                  <span> Amount to Pay </span>
+
+                  <strong id="paymentAmount"> ₱0.00 </strong>
+                </div>
+
+                <div class="form-group">
+                  <label for="paymentReference"> GCash Reference Number </label>
+
+                  <input
+                    type="text"
+                    id="paymentReference"
+                    placeholder="Enter reference number"
+                  />
+                </div>
+
+                <div id="paymentMessage"></div>
+
+                <button
+                  type="button"
+                  id="submitReservationBtn"
+                  class="btn btn-primary"
+                >
+                  Submit Reservation
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2026 Mac-Van-Mae Resort. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/supabase.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/reservation.js"></script>
+  </body>
+</html>

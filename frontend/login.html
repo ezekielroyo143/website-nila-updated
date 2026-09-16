@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Mac Van Mae</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="./index.html">
+          Mac Van Mae <span>Resort</span>
+        </a>
+
+        <a href="./index.html" class="btn">Home</a>
+      </div>
+    </header>
+
+    <main class="form-page">
+      <div class="form-card">
+        <p class="eyebrow">WELCOME BACK</p>
+
+        <h1>Login</h1>
+
+        <p>Sign in to make and manage your reservations.</p>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label>Email</label>
+            <input id="email" type="email" required />
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <input id="password" type="password" required minlength="6" />
+          </div>
+
+          <button class="btn btn-primary" type="submit">Login</button>
+
+          <div id="message"></div>
+        </form>
+
+        <p style="margin-top: 18px">
+          No account yet?
+          <a class="text-link" href="./register.html"> Create one </a>
+        </p>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="./js/login.js"></script>
+  </body>
+</html>
