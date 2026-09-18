@@ -39,6 +39,7 @@ const mobileOverlay = document.getElementById("mobileOverlay");
 let allReservations = [];
 let selectedReservation = null;
 
+//Check if the user is logged in, if not redirect to login page//
 async function checkLogin() {
   const {
     data: { user },
@@ -53,6 +54,7 @@ async function checkLogin() {
   return true;
 }
 
+//get the reservations from the database and display them in the table//
 async function loadReservations() {
   reservationsTable.innerHTML = `
         <tr>

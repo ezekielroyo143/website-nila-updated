@@ -202,8 +202,17 @@
       </section>
 
       <section class="payment-section" id="paymentSection">
-        <div class="container">
-          <div class="payment-card">
+        <div class="payment-modal-overlay" id="paymentModal">
+          <div class="payment-modal">
+            <button
+              type="button"
+              class="payment-modal-close"
+              id="closePaymentModal"
+              aria-label="Close payment"
+            >
+              &times;
+            </button>
+
             <div class="section-heading">
               <p class="eyebrow">PAYMENT</p>
 
@@ -248,9 +257,9 @@
 
               <div class="payment-details">
                 <div class="payment-total-box">
-                  <span> Amount to Pay </span>
+                  <span>Amount to Pay</span>
 
-                  <strong id="paymentAmount"> ₱0.00 </strong>
+                  <strong id="paymentAmount">₱0.00</strong>
                 </div>
 
                 <div class="form-group">

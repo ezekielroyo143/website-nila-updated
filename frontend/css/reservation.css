@@ -1,193 +1,375 @@
 .reservation-hero {
   padding: 80px 0 60px;
+
   text-align: center;
 }
+
 .reservation-hero h1 {
   margin: 10px 0 15px;
+
   font-size: 48px;
 }
+
 .reservation-hero p:not(.eyebrow) {
   max-width: 600px;
+
   margin: 0 auto;
+
   color: var(--muted);
+
   line-height: 1.7;
 }
+
 .reservation-section {
   padding: 20px 0 80px;
 }
+
 .reservation-layout {
   display: grid;
+
   grid-template-columns: 1.6fr 0.9fr;
+
   gap: 35px;
+
   align-items: start;
 }
+
 .reservation-form-card,
 .reservation-summary-card,
 .payment-card {
   background: white;
+
   border: 1px solid var(--border);
+
   border-radius: 16px;
+
   padding: 32px;
 }
+
 .section-heading {
   margin-bottom: 25px;
 }
+
 .section-heading h2 {
   margin: 7px 0 0;
+
   color: var(--dark);
+
   font-size: 27px;
 }
+
 .small-heading {
   margin-top: 25px;
 }
+
 .form-row {
   display: grid;
+
   grid-template-columns: 1fr 1fr;
+
   gap: 18px;
 }
+
 .form-group {
   margin-bottom: 18px;
 }
+
 .form-group label {
   display: block;
+
   margin-bottom: 7px;
+
   color: var(--dark);
+
   font-size: 13px;
+
   font-weight: 600;
 }
+
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
+
   box-sizing: border-box;
+
   padding: 13px 14px;
+
   border: 1px solid var(--border);
+
   border-radius: 8px;
+
   background: white;
+
   color: var(--dark);
+
   font-family: inherit;
+
   font-size: 14px;
+
   outline: none;
 }
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--green);
 }
+
 .form-group textarea {
   min-height: 100px;
+
   resize: vertical;
 }
+
 .section-divider {
   height: 1px;
+
   background: var(--border);
+
   margin: 25px 0;
 }
+
 .reservation-submit {
   width: 100%;
+
   margin-top: 5px;
+
   padding: 15px;
 }
+
 #message,
 #paymentMessage {
   margin: 10px 0 15px;
+
   font-size: 13px;
 }
+
 .message-error {
   color: #c0392b;
 }
+
 .message-success {
   color: #18864b;
 }
+
 .reservation-summary-card {
   position: sticky;
+
   top: 25px;
 }
+
 .summary-list {
   border-top: 1px solid var(--border);
 }
+
 .summary-item {
   display: flex;
+
   justify-content: space-between;
+
   gap: 20px;
+
   padding: 15px 0;
+
   border-bottom: 1px solid var(--border);
+
   font-size: 13px;
 }
+
 .summary-item span {
   color: var(--muted);
 }
+
 .summary-item strong {
   color: var(--dark);
+
   text-align: right;
 }
+
 .summary-total {
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
   margin-top: 20px;
+
   padding-top: 20px;
+
   border-top: 2px solid var(--dark);
 }
+
 .summary-total span {
   color: var(--dark);
+
   font-weight: 700;
 }
+
 .summary-total strong {
   color: var(--green);
+
   font-size: 26px;
 }
+
 .payment-section {
-  padding: 0 0 90px;
+  display: block;
+  padding: 0;
 }
-.payment-card {
+
+.payment-modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: none;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  overflow-y: auto;
+}
+
+.payment-modal-overlay.active {
+  display: flex;
+}
+
+.payment-modal {
+  position: relative;
+
+  width: 100%;
+
   max-width: 950px;
-  margin: 0 auto;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  padding: 32px;
+
+  box-sizing: border-box;
 }
+
+.payment-modal-close {
+  position: absolute;
+
+  top: 15px;
+
+  right: 18px;
+
+  width: 40px;
+
+  height: 40px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: var(--dark);
+
+  font-size: 30px;
+
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.payment-modal-close:hover {
+  background: #eeeeee;
+}
+
 .payment-content {
   display: grid;
+
   grid-template-columns: 1fr 1fr;
+
   gap: 45px;
+
   align-items: center;
 }
+
 .qr-box {
   text-align: center;
 }
+
 .sample-label {
   display: inline-block;
+
   margin-bottom: 12px;
+
   padding: 6px 10px;
+
   border-radius: 5px;
+
   background: #fff1f1;
+
   color: #c0392b;
+
   font-size: 10px;
+
   font-weight: 800;
 }
+
 .qr-placeholder {
   width: 250px;
+
   height: 250px;
+
   margin: 0 auto;
+
   padding: 15px;
+
   box-sizing: border-box;
+
   background: white;
+
   border: 1px solid var(--border);
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 }
+
 .qr-pattern {
   width: 210px;
+
   height: 210px;
+
   display: grid;
+
   grid-template-columns: repeat(4, 1fr);
+
   grid-template-rows: repeat(4, 1fr);
+
   gap: 5px;
+
   background: white;
 }
+
 .qr-pattern span {
   display: block;
+
   background: var(--dark);
 }
+
 .qr-pattern span:nth-child(2),
 .qr-pattern span:nth-child(5),
 .qr-pattern span:nth-child(8),
@@ -195,6 +377,7 @@
 .qr-pattern span:nth-child(14) {
   background: white;
 }
+
 .qr-pattern span:nth-child(4),
 .qr-pattern span:nth-child(7),
 .qr-pattern span:nth-child(9),
@@ -202,71 +385,106 @@
 .qr-pattern span:nth-child(16) {
   background: var(--dark);
 }
+
 .qr-note {
   max-width: 300px;
+
   margin: 15px auto 0;
+
   color: var(--muted);
+
   font-size: 12px;
+
   line-height: 1.5;
 }
+
 .payment-details {
   padding: 25px;
+
   border-radius: 12px;
+
   background: var(--cream);
 }
+
 .payment-total-box {
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
   padding-bottom: 20px;
+
   margin-bottom: 20px;
+
   border-bottom: 1px solid var(--border);
 }
+
 .payment-total-box span {
   color: var(--muted);
+
   font-size: 13px;
 }
+
 .payment-total-box strong {
   color: var(--green);
+
   font-size: 25px;
 }
+
 .payment-details .btn {
   width: 100%;
+
   padding: 14px;
 }
+
 @media (max-width: 900px) {
   .reservation-layout {
     grid-template-columns: 1fr;
   }
+
   .reservation-summary-card {
     position: static;
   }
+
   .payment-content {
     grid-template-columns: 1fr;
   }
 }
+
 @media (max-width: 600px) {
   .reservation-hero {
     padding: 55px 0 40px;
   }
+
   .reservation-hero h1 {
     font-size: 36px;
   }
+
   .reservation-form-card,
-  .reservation-summary-card,
-  .payment-card {
+  .reservation-summary-card {
     padding: 22px;
   }
+
+  .payment-modal {
+    padding: 22px;
+  }
+
   .form-row {
     grid-template-columns: 1fr;
+
     gap: 0;
   }
+
   .qr-placeholder {
     width: 220px;
+
     height: 220px;
   }
+
   .qr-pattern {
     width: 180px;
+
     height: 180px;
   }
 }

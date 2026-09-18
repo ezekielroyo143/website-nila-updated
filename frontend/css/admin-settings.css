@@ -5,9 +5,10 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background: #f5f6f8;
-  color: #222;
+  color: #1f2937;
+  min-height: 100vh;
 }
 
 .admin-layout {
@@ -16,241 +17,378 @@ body {
 }
 
 .sidebar {
-  width: 250px;
-  background: #111827;
-  color: white;
+  width: 224px;
+  background: #1f2a3a;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  padding: 25px 18px;
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .sidebar-header {
-  text-align: center;
-  margin-bottom: 35px;
+  height: 82px;
+  padding: 0 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .sidebar-header h2 {
-  font-size: 22px;
-  margin-bottom: 5px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
 .sidebar-header span {
-  font-size: 11px;
-  color: #9ca3af;
-  letter-spacing: 1px;
+  color: #9da8b8;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
 }
 
 .sidebar nav {
+  padding: 26px 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
 }
 
 .sidebar nav a {
-  text-decoration: none;
-  color: #d1d5db;
-  padding: 13px 15px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
   border-radius: 8px;
-  transition: 0.2s;
+  color: #d6dbe3;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.2s ease;
 }
 
-.sidebar nav a:hover,
+.sidebar nav a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
 .sidebar nav a.active {
-  background: #2563eb;
-  color: white;
+  background: rgba(210, 171, 38, 0.18);
+  color: #ffffff;
+  border-left: 3px solid #d4aa18;
+  padding-left: 17px;
 }
 
 .logout-btn {
-  margin-top: auto;
-  border: none;
-  background: #dc2626;
-  color: white;
-  padding: 12px;
-  border-radius: 8px;
+  width: calc(100% - 32px);
+  height: 38px;
+  margin: auto 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  background: transparent;
+  color: #d9dee6;
+  font-size: 12px;
   cursor: pointer;
-  font-size: 14px;
+  transition: 0.2s ease;
 }
 
 .logout-btn:hover {
-  background: #b91c1c;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
 }
 
 .main-content {
-  flex: 1;
-  padding: 30px;
+  margin-left: 224px;
+  width: calc(100% - 224px);
+  min-height: 100vh;
+  background: #f5f6f8;
 }
 
 .topbar {
-  margin-bottom: 30px;
+  height: 82px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
 }
 
 .topbar h1 {
-  font-size: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
   margin-bottom: 5px;
 }
 
 .topbar p {
-  color: #6b7280;
+  color: #94a3b8;
+  font-size: 11px;
 }
 
 .settings-container {
-  max-width: 950px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 20px;
 }
 
 .settings-card {
-  background: white;
-  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 9px;
   padding: 25px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 
 .card-header {
-  margin-bottom: 25px;
+  padding-bottom: 20px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #edf0f3;
 }
 
 .card-header h2 {
-  font-size: 20px;
-  margin-bottom: 6px;
+  color: #1e293b;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 7px;
 }
 
 .card-header p {
-  color: #6b7280;
-  font-size: 14px;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  color: #94a3b8;
+  font-size: 11px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 18px;
 }
 
 .form-group label {
-  font-size: 14px;
+  color: #475569;
+  font-size: 11px;
   font-weight: 600;
-  margin-bottom: 8px;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  border: 1px solid #d1d5db;
+  border: 1px solid #dfe4ea;
   border-radius: 7px;
-  padding: 12px;
-  font-size: 14px;
-  outline: none;
+  background: #ffffff;
+  color: #334155;
   font-family: inherit;
+  font-size: 12px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.form-group input {
+  height: 40px;
+  padding: 0 13px;
+}
+
+.form-group textarea {
+  padding: 11px 13px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a0a9b6;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #2563eb;
+  border-color: #d2a900;
+  box-shadow: 0 0 0 2px rgba(210, 169, 0, 0.08);
 }
 
-.form-group textarea {
-  resize: vertical;
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row .form-group {
+  flex: 1;
 }
 
 .save-btn {
+  min-width: 190px;
+  height: 40px;
+  padding: 0 20px;
   border: none;
-  background: #2563eb;
-  color: white;
-  padding: 12px 18px;
   border-radius: 7px;
+  background: #d2a900;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 14px;
+  transition: 0.2s ease;
 }
 
 .save-btn:hover {
-  background: #1d4ed8;
+  background: #bd9700;
 }
 
 .message {
-  margin-top: 12px;
-  font-size: 14px;
+  min-height: 18px;
+  margin-top: 10px;
+  font-size: 11px;
 }
 
 .account-info {
   display: flex;
   gap: 60px;
-  padding: 15px 0 25px;
+  margin-bottom: 23px;
 }
 
 .account-info > div {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
 }
 
 .info-label {
-  color: #6b7280;
-  font-size: 13px;
+  color: #94a3b8;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 600;
 }
 
-.status-active {
+.account-info strong {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.account-info .status-active {
   color: #16a34a;
 }
 
 .danger-btn {
-  border: none;
-  background: #dc2626;
-  color: white;
-  padding: 11px 18px;
+  height: 39px;
+  padding: 0 18px;
+  border: 1px solid #efcaca;
   border-radius: 7px;
+  background: #fff7f7;
+  color: #dc2626;
+  font-size: 11px;
+  font-weight: 600;
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .danger-btn:hover {
-  background: #b91c1c;
+  background: #fee2e2;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .sidebar {
-    width: 200px;
+    width: 190px;
   }
 
   .main-content {
+    margin-left: 190px;
+    width: calc(100% - 190px);
+  }
+
+  .settings-container {
+    padding: 24px;
+  }
+
+  .form-row {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    width: 70px;
+  }
+
+  .sidebar-header {
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  .sidebar-header h2 {
+    font-size: 0;
+  }
+
+  .sidebar-header h2::before {
+    content: "H";
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .sidebar-header span {
+    display: none;
+  }
+
+  .sidebar nav {
+    padding: 20px 8px;
+  }
+
+  .sidebar nav a {
+    justify-content: center;
+    padding: 0;
+    font-size: 0;
+  }
+
+  .sidebar nav a.active {
+    padding-left: 0;
+    border-left: none;
+    border-bottom: 3px solid #d4aa18;
+  }
+
+  .logout-btn {
+    width: calc(100% - 16px);
+    margin: auto 8px 12px;
+    font-size: 0;
+  }
+
+  .logout-btn::before {
+    content: "↪";
+    font-size: 16px;
+  }
+
+  .main-content {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+  }
+
+  .topbar {
+    padding: 0 20px;
+  }
+
+  .settings-container {
+    padding: 18px;
+  }
+
+  .settings-card {
     padding: 20px;
   }
 
   .form-row {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 0;
   }
 
   .account-info {
     flex-direction: column;
-    gap: 20px;
-  }
-}
-
-@media (max-width: 600px) {
-  .admin-layout {
-    flex-direction: column;
+    gap: 18px;
   }
 
-  .sidebar {
+  .save-btn {
     width: 100%;
-  }
-
-  .sidebar nav {
-    flex-direction: row;
-    overflow-x: auto;
-  }
-
-  .sidebar nav a {
-    white-space: nowrap;
-  }
-
-  .logout-btn {
-    margin-top: 20px;
   }
 }

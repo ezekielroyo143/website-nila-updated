@@ -1,5 +1,5 @@
 const navToggle = document.getElementById("navToggle");
-const nav = document.getElementById("siteNav");
+const nav = document.getElementById(".nav");
 
 if (navToggle && nav) {
   navToggle.addEventListener("click", () => {

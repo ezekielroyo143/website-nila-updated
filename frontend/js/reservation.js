@@ -8,11 +8,11 @@ const adults = document.getElementById("adults");
 const children = document.getElementById("children");
 
 const paymentSection = document.getElementById("paymentSection");
+const paymentModal = document.getElementById("paymentModal");
+const closePaymentModal = document.getElementById("closePaymentModal");
 
 const paymentAmount = document.getElementById("paymentAmount");
-
 const paymentReference = document.getElementById("paymentReference");
-
 const paymentMessage = document.getElementById("paymentMessage");
 
 const submitReservationBtn = document.getElementById("submitReservationBtn");
@@ -21,10 +21,6 @@ const logoutBtn = document.getElementById("logoutBtn");
 
 let rooms = [];
 let selectedRoom = null;
-
-/* =========================
-   PRICE FORMAT
-========================= */
 
 function peso(value) {
   return (
@@ -36,17 +32,12 @@ function peso(value) {
   );
 }
 
-/* =========================
-   CALCULATE NIGHTS
-========================= */
-
 function getNights() {
   if (!checkIn.value || !checkOut.value) {
     return 0;
   }
 
   const start = new Date(checkIn.value + "T00:00:00");
-
   const end = new Date(checkOut.value + "T00:00:00");
 
   const difference = Math.ceil((end - start) / 86400000);
@@ -54,28 +45,18 @@ function getNights() {
   return difference > 0 ? difference : 0;
 }
 
-/* =========================
-   UPDATE SUMMARY
-========================= */
-
 function updateSummary() {
   selectedRoom =
     rooms.find((room) => String(room.id) === String(roomSelect.value)) || null;
 
   const nights = getNights();
-
   const total = selectedRoom ? Number(selectedRoom.price) * nights : 0;
 
   const summaryRoom = document.getElementById("summaryRoom");
-
   const summaryCheckIn = document.getElementById("summaryCheckIn");
-
   const summaryCheckOut = document.getElementById("summaryCheckOut");
-
   const summaryNights = document.getElementById("summaryNights");
-
   const summaryRate = document.getElementById("summaryRate");
-
   const summaryTotal = document.getElementById("summaryTotal");
 
   if (summaryRoom) {
@@ -107,24 +88,23 @@ function updateSummary() {
   }
 }
 
-/* =========================
-   LOAD LOGGED-IN USER
-========================= */
-
 async function loadUser() {
-  const { data, error } = await window.supabaseClient.auth.getUser();
+  const {
+    data: { session },
+    error,
+  } = await window.supabaseClient.auth.getSession();
 
   if (error) {
     console.error("Auth error:", error);
-
     return;
   }
 
-  if (!data.user) {
+  if (!session || !session.user) {
+    window.location.href = "./login.html";
     return;
   }
 
-  const user = data.user;
+  const user = session.user;
 
   const emailInput = document.getElementById("email");
 
@@ -140,7 +120,6 @@ async function loadUser() {
 
   if (profileError) {
     console.warn("Profile could not be loaded:", profileError);
-
     return;
   }
 
@@ -149,9 +128,7 @@ async function loadUser() {
   }
 
   const firstName = document.getElementById("firstName");
-
   const lastName = document.getElementById("lastName");
-
   const phone = document.getElementById("phone");
 
   if (profile.full_name) {
@@ -171,10 +148,6 @@ async function loadUser() {
   }
 }
 
-/* =========================
-   LOAD ROOMS
-========================= */
-
 async function loadRooms() {
   const { data, error } = await window.supabaseClient
     .from("rooms")
@@ -193,7 +166,6 @@ async function loadRooms() {
 
     if (message) {
       message.className = "message-error";
-
       message.textContent = "Unable to load rooms.";
     }
 
@@ -217,7 +189,6 @@ async function loadRooms() {
   });
 
   const urlParams = new URLSearchParams(window.location.search);
-
   const roomSlug = urlParams.get("room");
 
   if (roomSlug) {
@@ -231,10 +202,6 @@ async function loadRooms() {
   updateSummary();
 }
 
-/* =========================
-   VALIDATE RESERVATION
-========================= */
-
 function validateReservation() {
   if (message) {
     message.className = "";
@@ -242,11 +209,8 @@ function validateReservation() {
   }
 
   const firstName = document.getElementById("firstName").value.trim();
-
   const lastName = document.getElementById("lastName").value.trim();
-
   const email = document.getElementById("email").value.trim();
-
   const phone = document.getElementById("phone").value.trim();
 
   const nights = getNights();
@@ -254,7 +218,6 @@ function validateReservation() {
   if (!firstName || !lastName || !email || !phone) {
     if (message) {
       message.className = "message-error";
-
       message.textContent = "Please complete all guest information.";
     }
 
@@ -264,7 +227,6 @@ function validateReservation() {
   if (!selectedRoom) {
     if (message) {
       message.className = "message-error";
-
       message.textContent = "Please select a room.";
     }
 
@@ -274,7 +236,6 @@ function validateReservation() {
   if (nights < 1) {
     if (message) {
       message.className = "message-error";
-
       message.textContent = "Please select valid check-in and check-out dates.";
     }
 
@@ -282,13 +243,11 @@ function validateReservation() {
   }
 
   const adultCount = Number(adults.value);
-
   const childCount = Number(children.value || 0);
 
   if (adultCount < 1) {
     if (message) {
       message.className = "message-error";
-
       message.textContent = "There must be at least 1 adult.";
     }
 
@@ -298,7 +257,6 @@ function validateReservation() {
   if (childCount < 0) {
     if (message) {
       message.className = "message-error";
-
       message.textContent = "Children cannot be negative.";
     }
 
@@ -308,7 +266,6 @@ function validateReservation() {
   if (adultCount + childCount > Number(selectedRoom.max_guests)) {
     if (message) {
       message.className = "message-error";
-
       message.textContent = `This room allows up to ${selectedRoom.max_guests} guests.`;
     }
 
@@ -318,9 +275,23 @@ function validateReservation() {
   return true;
 }
 
-/* =========================
-   CONTINUE TO PAYMENT
-========================= */
+function openPaymentModal() {
+  if (!paymentModal) {
+    return;
+  }
+
+  paymentModal.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closePaymentModalWindow() {
+  if (!paymentModal) {
+    return;
+  }
+
+  paymentModal.classList.remove("active");
+  document.body.style.overflow = "";
+}
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -330,26 +301,30 @@ form.addEventListener("submit", (event) => {
   }
 
   const nights = getNights();
-
   const total = Number(selectedRoom.price) * nights;
 
   if (paymentAmount) {
     paymentAmount.textContent = peso(total);
   }
 
-  paymentSection.scrollIntoView({
-    behavior: "smooth",
-  });
+  openPaymentModal();
 });
 
-/* =========================
-   SUBMIT RESERVATION
-========================= */
+if (closePaymentModal) {
+  closePaymentModal.addEventListener("click", closePaymentModalWindow);
+}
+
+if (paymentModal) {
+  paymentModal.addEventListener("click", (event) => {
+    if (event.target === paymentModal) {
+      closePaymentModalWindow();
+    }
+  });
+}
 
 async function submitReservation() {
   if (paymentMessage) {
     paymentMessage.className = "";
-
     paymentMessage.textContent = "";
   }
 
@@ -357,27 +332,27 @@ async function submitReservation() {
 
   if (!reference) {
     paymentMessage.className = "message-error";
-
     paymentMessage.textContent = "Please enter your GCash reference number.";
 
     return;
   }
 
-  const { data, error: authError } = await window.supabaseClient.auth.getUser();
+  const {
+    data: { session },
+    error: authError,
+  } = await window.supabaseClient.auth.getSession();
 
   if (authError) {
     console.error("Authentication error:", authError);
 
     paymentMessage.className = "message-error";
-
     paymentMessage.textContent = "Unable to verify your login.";
 
     return;
   }
 
-  if (!data.user) {
+  if (!session || !session.user) {
     paymentMessage.className = "message-error";
-
     paymentMessage.textContent = "Please log in before making a reservation.";
 
     return;
@@ -388,36 +363,23 @@ async function submitReservation() {
   }
 
   const nights = getNights();
-
   const total = Number(selectedRoom.price) * nights;
 
   submitReservationBtn.disabled = true;
-
   submitReservationBtn.textContent = "Submitting...";
 
   const { error } = await window.supabaseClient.from("reservations").insert({
-    user_id: data.user.id,
-
+    user_id: session.user.id,
     room_id: selectedRoom.id,
-
     first_name: document.getElementById("firstName").value.trim(),
-
     last_name: document.getElementById("lastName").value.trim(),
-
     email: document.getElementById("email").value.trim(),
-
     phone: document.getElementById("phone").value.trim(),
-
     check_in: checkIn.value,
-
     check_out: checkOut.value,
-
     adults: Number(adults.value),
-
     children: Number(children.value || 0),
-
     special_requests: document.getElementById("specialRequests").value.trim(),
-
     total: total,
   });
 
@@ -425,19 +387,16 @@ async function submitReservation() {
     console.error("Reservation error:", error);
 
     paymentMessage.className = "message-error";
-
     paymentMessage.textContent =
       error.message || "Failed to submit reservation.";
 
     submitReservationBtn.disabled = false;
-
     submitReservationBtn.textContent = "Submit Reservation";
 
     return;
   }
 
   paymentMessage.className = "message-success";
-
   paymentMessage.textContent = "Reservation submitted successfully!";
 
   submitReservationBtn.disabled = true;
@@ -447,28 +406,15 @@ async function submitReservation() {
   }, 1500);
 }
 
-/* =========================
-   EVENT LISTENERS
-========================= */
-
 roomSelect.addEventListener("change", updateSummary);
-
 checkIn.addEventListener("change", updateSummary);
-
 checkOut.addEventListener("change", updateSummary);
-
 adults.addEventListener("change", updateSummary);
-
 children.addEventListener("change", updateSummary);
-
-/* =========================
-   DATE SETTINGS
-========================= */
 
 const today = new Date().toISOString().split("T")[0];
 
 checkIn.min = today;
-
 checkOut.min = today;
 
 checkIn.addEventListener("change", () => {
@@ -481,14 +427,9 @@ checkIn.addEventListener("change", () => {
   updateSummary();
 });
 
-/* =========================
-   LOGOUT
-========================= */
-
 if (logoutBtn) {
   logoutBtn.addEventListener("click", async () => {
     logoutBtn.disabled = true;
-
     logoutBtn.textContent = "Logging out...";
 
     const { error } = await window.supabaseClient.auth.signOut();
@@ -497,7 +438,6 @@ if (logoutBtn) {
       console.error("Logout error:", error);
 
       logoutBtn.disabled = false;
-
       logoutBtn.textContent = "Logout";
 
       return;
@@ -506,10 +446,6 @@ if (logoutBtn) {
     window.location.href = "./login.html";
   });
 }
-
-/* =========================
-   START
-========================= */
 
 submitReservationBtn.addEventListener("click", submitReservation);
 
@@ -520,9 +456,11 @@ async function updateNavigation() {
     return;
   }
 
-  const { data } = await window.supabaseClient.auth.getUser();
+  const {
+    data: { session },
+  } = await window.supabaseClient.auth.getSession();
 
-  if (data.user) {
+  if (session && session.user) {
     navActions.innerHTML = `
       <a href="./rooms.html" class="btn">Rooms</a>
       <a href="./my-reservations.html" class="btn btn-primary">My Reservations</a>
@@ -539,8 +477,10 @@ async function updateNavigation() {
 
       if (error) {
         console.error("Logout error:", error);
+
         navLogoutBtn.disabled = false;
         navLogoutBtn.textContent = "Logout";
+
         return;
       }
 
@@ -548,6 +488,7 @@ async function updateNavigation() {
     });
   }
 }
-loadUser();
 
+loadUser();
 loadRooms();
+updateNavigation();
