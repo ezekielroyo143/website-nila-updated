@@ -66,6 +66,7 @@ async function loadReservations() {
 
   emptyState.classList.remove("show");
 
+  // get all columns from the reservations table and order them by created_at in descending order
   const { data, error } = await supabase
     .from("reservations")
     .select("*")
@@ -73,6 +74,7 @@ async function loadReservations() {
       ascending: false,
     });
 
+  // handle errors and display a message if there is an error loading reservations
   if (error) {
     console.error("Error loading reservations:", error);
 

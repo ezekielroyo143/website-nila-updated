@@ -492,3 +492,161 @@ async function updateNavigation() {
 loadUser();
 loadRooms();
 updateNavigation();
+
+/* =========================================================
+   ROOM FILTER SIDEBAR
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const filterForm = document.querySelector(".reservation-filters");
+
+  if (!filterForm) return;
+
+  const applyButton = filterForm.querySelector(".filter-btn-primary");
+  const clearButton = filterForm.querySelector(".filter-btn-secondary");
+  const rangeSlider = filterForm.querySelector(".range-slider");
+
+  const rooms = document.querySelectorAll(".room-card");
+
+  /* ---------------------------------------------------------
+     PRICE RANGE
+     --------------------------------------------------------- */
+
+  const rangeValue = filterForm.querySelector(".range-values strong");
+
+  if (rangeSlider && rangeValue) {
+    const updateRangeValue = () => {
+      const value = Number(rangeSlider.value);
+
+      rangeValue.textContent = `₱${value.toLocaleString()}`;
+    };
+
+    rangeSlider.addEventListener("input", updateRangeValue);
+
+    updateRangeValue();
+  }
+
+  /* ---------------------------------------------------------
+     APPLY FILTERS
+     --------------------------------------------------------- */
+
+  if (applyButton) {
+    applyButton.addEventListener("click", () => {
+      const checkedFilters = [
+        ...filterForm.querySelectorAll('input[type="checkbox"]:checked'),
+      ];
+
+      const selectedFilters = checkedFilters.map((input) =>
+        input.value.toLowerCase(),
+      );
+
+      const maxPrice = rangeSlider ? Number(rangeSlider.value) : Infinity;
+
+      rooms.forEach((room) => {
+        const roomPrice = Number(room.dataset.price || 0);
+
+        const roomType = (room.dataset.type || "").toLowerCase();
+
+        const roomCapacity = (room.dataset.capacity || "").toLowerCase();
+
+        const roomFeatures = (room.dataset.features || "").toLowerCase();
+
+        /* PRICE FILTER */
+
+        const matchesPrice = roomPrice <= maxPrice;
+
+        /* CHECKBOX FILTER */
+
+        let matchesFilters = true;
+
+        if (selectedFilters.length > 0) {
+          matchesFilters = selectedFilters.some((filter) => {
+            return (
+              roomType.includes(filter) ||
+              roomCapacity.includes(filter) ||
+              roomFeatures.includes(filter)
+            );
+          });
+        }
+
+        /* SHOW / HIDE ROOM */
+
+        if (matchesPrice && matchesFilters) {
+          room.style.display = "";
+        } else {
+          room.style.display = "none";
+        }
+      });
+
+      updateNoResultsMessage();
+    });
+  }
+
+  /* ---------------------------------------------------------
+     CLEAR FILTERS
+     --------------------------------------------------------- */
+
+  if (clearButton) {
+    clearButton.addEventListener("click", () => {
+      /* Uncheck checkboxes */
+
+      filterForm.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+        input.checked = false;
+      });
+
+      /* Reset price */
+
+      if (rangeSlider) {
+        rangeSlider.value = rangeSlider.max;
+
+        if (rangeValue) {
+          rangeValue.textContent = `₱${Number(rangeSlider.max).toLocaleString()}`;
+        }
+      }
+
+      /* Show all rooms */
+
+      rooms.forEach((room) => {
+        room.style.display = "";
+      });
+
+      updateNoResultsMessage();
+    });
+  }
+
+  /* ---------------------------------------------------------
+     NO RESULTS MESSAGE
+     --------------------------------------------------------- */
+
+  function updateNoResultsMessage() {
+    let visibleRooms = 0;
+
+    rooms.forEach((room) => {
+      if (room.style.display !== "none") {
+        visibleRooms++;
+      }
+    });
+
+    let message = document.querySelector(".no-filter-results");
+
+    if (visibleRooms === 0) {
+      if (!message) {
+        message = document.createElement("div");
+
+        message.className = "no-filter-results";
+
+        message.textContent = "No rooms match your selected filters.";
+
+        const roomContainer = rooms[0]?.parentElement;
+
+        if (roomContainer) {
+          roomContainer.appendChild(message);
+        }
+      }
+
+      message.style.display = "block";
+    } else if (message) {
+      message.style.display = "none";
+    }
+  }
+});

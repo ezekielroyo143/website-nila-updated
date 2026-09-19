@@ -100,6 +100,7 @@ registerForm.addEventListener("submit", async (event) => {
         {
           id: data.user.id,
           full_name: fullName,
+          email: email,
           phone: phone,
         },
         {
