@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rooms - Mac Van Mae</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="./index.html">Mac Van Mae <span>Resort</span></a
+        ><button class="nav-toggle" id="navToggle">☰</button>
+        <nav id="siteNav">
+          <a href="./index.html">Home</a><a href="./rooms.html">Rooms</a
+          ><a href="./about.html">About</a
+          ><a href="./reservation.html">Reservation</a>
+        </nav>
+        <div class="nav-actions">
+          <a href="./login.html" class="btn">Login</a
+          ><a href="./register.html" class="btn btn-primary">Register</a>
+        </div>
+      </div>
+    </header>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">ACCOMMODATIONS</p>
+        <h1>Our Rooms & Villas</h1>
+        <p>Find the space that fits your stay.</p>
+      </div>
+    </section>
+    <main class="container">
+      <div id="roomsGrid" class="rooms-grid"><p>Loading rooms...</p></div>
+    </main>
+    <div id="roomModal" class="modal">
+      <div class="modal-box">
+        <button id="modalClose" class="modal-close">×</button
+        ><img id="modalImage" src="" alt="" />
+        <div class="modal-content">
+          <p class="eyebrow">ROOM DETAILS</p>
+          <h2 id="modalTitle"></h2>
+          <p id="modalDescription"></p>
+          <div id="modalAmenities" class="amenities"></div>
+          <p id="modalInfo"></p>
+          <div class="price" id="modalPrice"></div>
+          <a id="modalReserve" class="btn btn-primary" href="./reservation.html"
+            >Reserve This Room</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/supabase.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/rooms.js"></script>
+    <script src="./js/auth.js"></script>
+  </body>
+</html>

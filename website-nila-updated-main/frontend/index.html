@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mac Van Mae Resort</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="./index.html">Mac Van Mae <span>Resort</span></a>
+        <button class="nav-toggle" id="navToggle">☰</button>
+        <nav id="siteNav">
+          <a href="./index.html" class="active">Home</a>
+          <a href="./rooms.html">Rooms</a>
+          <a href="./about.html">About</a>
+          <a href="./reservation.html">Reservation</a>
+        </nav>
+        <div class="nav-actions">
+          <a href="./login.html" class="btn">Login</a>
+          <a href="./register.html" class="btn btn-primary">Register</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content container">
+          <p class="eyebrow">WELCOME TO MAC VAN MAE</p>
+          <h1>Your peaceful escape starts here.</h1>
+          <p>
+            Relax, recharge, and enjoy a comfortable stay surrounded by the
+            beauty of the resort.
+          </p>
+          <div class="hero-buttons">
+            <a href="./rooms.html" class="btn btn-primary">Explore Rooms</a>
+            <a href="./reservation.html" class="btn btn-light"
+              >Book Your Stay</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="section-heading">
+          <p class="eyebrow">OUR RESORT</p>
+          <h2>Comfort made memorable</h2>
+          <p>
+            Mac Van Mae Resort provides comfortable rooms, relaxing spaces, and
+            convenient amenities for families, couples, and travelers.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="icon">⌂</div>
+            <h3>Beautiful Rooms</h3>
+            <p>
+              Choose from carefully prepared accommodations for different group
+              sizes.
+            </p>
+          </article>
+          <article class="feature">
+            <div class="icon">✦</div>
+            <h3>Relaxing Amenities</h3>
+            <p>
+              Enjoy facilities designed to make your stay comfortable and
+              enjoyable.
+            </p>
+          </article>
+          <article class="feature">
+            <div class="icon">♡</div>
+            <h3>Warm Hospitality</h3>
+            <p>
+              We aim to give every guest a welcoming and memorable resort
+              experience.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">STAY WITH US</p>
+            <h2>Featured rooms</h2>
+          </div>
+          <div class="room-preview-grid" id="featuredRooms"></div>
+          <div class="center">
+            <a href="./rooms.html" class="btn btn-primary">View All Rooms</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="split">
+          <div>
+            <p class="eyebrow">WHY CHOOSE US</p>
+            <h2>A stay designed around you</h2>
+            <p>
+              From simple rooms to premium villas, our accommodations give
+              guests options for relaxing weekends, family trips, and special
+              occasions.
+            </p>
+            <a href="./about.html" class="text-link">Learn more about us →</a>
+          </div>
+          <div class="stats">
+            <div><strong>6+</strong><span>Room Types</span></div>
+            <div><strong>24/7</strong><span>Reservation Access</span></div>
+            <div><strong>100%</strong><span>Comfort Focused</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="container">
+          <p class="eyebrow">READY TO RELAX?</p>
+          <h2>Make your next stay memorable.</h2>
+          <a href="./reservation.html" class="btn btn-light">Reserve Now</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>Mac Van Mae Resort</h3>
+          <p>
+            A comfortable destination for relaxing stays and memorable moments.
+          </p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="./rooms.html">Rooms</a><a href="./about.html">About</a
+          ><a href="./reservation.html">Reservation</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p>Phone: +63 900 000 0000</p>
+          <p>Email: info@macvanmae.example</p>
+        </div>
+      </div>
+      <div class="copyright">
+        © 2026 Mac Van Mae Resort. All rights reserved.
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/supabase.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/auth.js"></script>
+  </body>
+</html>
