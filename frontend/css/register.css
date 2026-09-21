@@ -1,1 +1,33 @@
-/* Register-specific styles are included in style.css. */
+/* Register page refinements */
+.form-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 480px;
+  transition: box-shadow 0.25s ease;
+}
+
+.form-card:hover {
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.08);
+}
+
+.form-card .eyebrow {
+  margin-bottom: 6px;
+}
+
+.form-card h1 {
+  font-size: 32px;
+}
+
+.form-card .btn {
+  margin-top: 8px;
+  padding: 13px 18px;
+}
+
+.form-card .text-link {
+  font-weight: 600;
+}

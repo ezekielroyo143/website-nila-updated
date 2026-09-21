@@ -12,7 +12,6 @@
       <aside class="sidebar">
         <div class="sidebar-header">
           <div class="logo-icon">H</div>
-
           <div>
             <h2>Hotel Admin</h2>
             <span>Management Panel</span>
@@ -24,22 +23,18 @@
             <span class="nav-icon">⌂</span>
             <span>Dashboard</span>
           </a>
-
           <a href="admin-rooms.html" class="nav-item active">
             <span class="nav-icon">▣</span>
             <span>Rooms</span>
           </a>
-
           <a href="admin-reservation.html" class="nav-item">
             <span class="nav-icon">▤</span>
             <span>Reservations</span>
           </a>
-
           <a href="admin-users.html" class="nav-item">
             <span class="nav-icon">♙</span>
             <span>Users</span>
           </a>
-
           <a href="admin-settings.html" class="nav-item">
             <span class="nav-icon">⚙</span>
             <span>Settings</span>
@@ -49,16 +44,13 @@
         <div class="sidebar-bottom">
           <div class="admin-profile">
             <div class="profile-avatar">A</div>
-
             <div class="profile-info">
               <strong>Administrator</strong>
               <span>Hotel Manager</span>
             </div>
           </div>
-
           <button id="logoutBtn" class="logout-btn">
-            <span>↪</span>
-            Logout
+            <span>↪</span> Logout
           </button>
         </div>
       </aside>
@@ -69,16 +61,13 @@
             <h1>Rooms</h1>
             <p>Manage your resort rooms</p>
           </div>
-
           <div class="topbar-actions">
             <button class="notification-btn" id="notificationBtn">
               ♢
               <span class="notification-dot"></span>
             </button>
-
             <div class="topbar-profile">
               <div class="profile-avatar">A</div>
-
               <div>
                 <strong>Administrator</strong>
                 <span>Admin</span>
@@ -91,12 +80,9 @@
           <section class="welcome-banner">
             <div>
               <div class="welcome-label">ROOM MANAGEMENT</div>
-
               <h2>Manage Rooms</h2>
-
-              <p>View and manage the rooms available at your resort.</p>
+              <p>View, add, and edit the rooms available at your resort.</p>
             </div>
-
             <div class="welcome-decoration">
               <span>✦</span>
               <span>✦</span>
@@ -110,8 +96,7 @@
                 <h3>All Rooms</h3>
                 <p>Current rooms in your resort</p>
               </div>
-
-              <button class="btn btn-primary" id="addRoomBtn">
+              <button type="button" class="btn btn-primary" id="addRoomBtn">
                 + Add Room
               </button>
             </div>
@@ -129,7 +114,6 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-
                 <tbody id="roomsTableBody">
                   <tr>
                     <td colspan="7" class="loading-cell">Loading rooms...</td>
@@ -142,20 +126,146 @@
       </main>
     </div>
 
+    <!-- Add / Edit Room Modal -->
+    <div class="admin-modal" id="roomModal">
+      <div class="admin-modal-box">
+        <button type="button" class="admin-modal-close" id="roomModalClose">
+          ×
+        </button>
+        <div class="admin-modal-header">
+          <h2 id="roomModalTitle">Add Room</h2>
+          <p id="roomModalSubtitle">Create a new room for your resort.</p>
+        </div>
+
+        <form id="roomForm">
+          <input type="hidden" id="roomId" value="" />
+
+          <div class="admin-form-group">
+            <label for="roomName">Room Name *</label>
+            <input
+              type="text"
+              id="roomName"
+              placeholder="e.g. Deluxe Ocean View"
+              required
+            />
+          </div>
+
+          <div class="admin-form-row">
+            <div class="admin-form-group">
+              <label for="roomType">Type</label>
+              <select id="roomType">
+                <option value="">Select type</option>
+                <option value="Standard">Standard</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Suite">Suite</option>
+                <option value="Villa">Villa</option>
+                <option value="Family">Family</option>
+              </select>
+            </div>
+            <div class="admin-form-group">
+              <label for="roomPrice">Price / Night (₱) *</label>
+              <input
+                type="number"
+                id="roomPrice"
+                min="0"
+                step="1"
+                placeholder="2500"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="admin-form-row">
+            <div class="admin-form-group">
+              <label for="roomCapacity">Max Guests *</label>
+              <input
+                type="number"
+                id="roomCapacity"
+                min="1"
+                step="1"
+                placeholder="2"
+                required
+              />
+            </div>
+            <div class="admin-form-group">
+              <label for="roomBeds">Beds</label>
+              <input
+                type="text"
+                id="roomBeds"
+                placeholder="e.g. 1 King Bed"
+              />
+            </div>
+          </div>
+
+          <div class="admin-form-row">
+            <div class="admin-form-group">
+              <label for="roomSize">Size</label>
+              <input type="text" id="roomSize" placeholder="e.g. 35 sqm" />
+            </div>
+            <div class="admin-form-group">
+              <label for="roomView">View</label>
+              <input type="text" id="roomView" placeholder="e.g. Ocean View" />
+            </div>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="roomImage">Image URL</label>
+            <input
+              type="url"
+              id="roomImage"
+              placeholder="https://example.com/room.jpg"
+            />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="roomDescription">Description</label>
+            <textarea
+              id="roomDescription"
+              placeholder="Short description of the room..."
+            ></textarea>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="roomAmenities">Amenities (comma separated)</label>
+            <input
+              type="text"
+              id="roomAmenities"
+              placeholder="WiFi, Air Conditioning, Mini Bar"
+            />
+          </div>
+
+          <div class="admin-form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" id="roomAvailable" checked />
+              <label for="roomAvailable">Available for booking</label>
+            </div>
+          </div>
+
+          <div class="admin-form-actions">
+            <button type="button" class="btn btn-secondary" id="roomCancelBtn">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" id="roomSubmitBtn">
+              Save Room
+            </button>
+          </div>
+
+          <p class="admin-form-message" id="roomFormMessage"></p>
+        </form>
+      </div>
+    </div>
+
     <div class="notification-panel" id="notificationPanel">
       <div class="notification-header">
         <h3>Notifications</h3>
-
         <button id="closeNotification">×</button>
       </div>
-
       <div class="notification-content" id="notificationContent">
         No new notifications.
       </div>
     </div>
 
     <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
-
     <div class="mobile-overlay" id="mobileOverlay"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

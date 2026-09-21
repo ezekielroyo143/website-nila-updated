@@ -123,10 +123,11 @@ body {
   text-decoration: none;
   font-size: 11px;
   transition: all 0.2s ease;
+  border-left: 3px solid transparent;
 }
 
 .nav-item:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
 
@@ -425,6 +426,12 @@ body {
   align-items: center;
   gap: 13px;
   box-shadow: 0 2px 8px rgba(31, 43, 59, 0.025);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(31, 43, 59, 0.08);
 }
 
 .stat-icon {
@@ -520,14 +527,14 @@ body {
 
 .card-header h3 {
   color: var(--text);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   margin-bottom: 4px;
 }
 
 .card-header p {
   color: var(--muted);
-  font-size: 8px;
+  font-size: 12px;
 }
 
 .view-all-btn {
@@ -562,20 +569,20 @@ body {
 }
 
 .table-wrapper th {
-  padding: 10px 9px;
+  padding: 12px 12px;
   color: #8c96a5;
   text-align: left;
-  font-size: 7px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.5px;
   white-space: nowrap;
 }
 
 .table-wrapper td {
-  padding: 12px 9px;
+  padding: 14px 12px;
   color: #3e4a5a;
-  font-size: 8px;
+  font-size: 13px;
   border-bottom: 1px solid #eef0f3;
   white-space: nowrap;
 }
@@ -938,5 +945,294 @@ body {
   .notification-panel {
     right: 15px;
     width: calc(100% - 30px);
+  }
+}
+
+/* ========================================
+   BUTTONS (Admin Rooms / Actions)
+======================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: #243041;
+  border-color: var(--gold);
+}
+
+.btn-primary:hover {
+  background: #c49a10;
+  border-color: #c49a10;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(216, 170, 24, 0.3);
+}
+
+.btn-secondary {
+  background: #f0f3f7;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-secondary:hover {
+  background: #e5e8ed;
+}
+
+.btn-danger {
+  background: var(--red-soft);
+  color: var(--red);
+  border-color: #f0c4c4;
+}
+
+.btn-danger:hover {
+  background: #f8d4d4;
+  border-color: var(--red);
+}
+
+.edit-room-btn,
+.delete-room-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-right: 4px;
+}
+
+.edit-room-btn {
+  color: #2563eb;
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.edit-room-btn:hover {
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.delete-room-btn {
+  color: var(--red);
+  border-color: #f0c4c4;
+  background: var(--red-soft);
+}
+
+.delete-room-btn:hover {
+  background: #f8d4d4;
+  border-color: var(--red);
+}
+
+/* Status badges in tables */
+.room-status.available,
+span.room-status.available {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.room-status.occupied,
+span.room-status.occupied {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+/* ========================================
+   MODAL (Add / Edit Room)
+======================================== */
+
+.admin-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 2000;
+  backdrop-filter: blur(3px);
+}
+
+.admin-modal.show {
+  display: flex;
+}
+
+.admin-modal-box {
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+  animation: adminModalIn 0.25s ease;
+}
+
+@keyframes adminModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-modal-header {
+  margin-bottom: 22px;
+  padding-right: 32px;
+}
+
+.admin-modal-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.admin-modal-header p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.admin-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: #f0f3f7;
+  color: #677386;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.2s ease;
+}
+
+.admin-modal-close:hover {
+  background: #e5e8ed;
+  color: var(--text);
+}
+
+.admin-form-group {
+  margin-bottom: 16px;
+}
+
+.admin-form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.admin-form-group input,
+.admin-form-group select,
+.admin-form-group textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-form-group input:focus,
+.admin-form-group select:focus,
+.admin-form-group textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(216, 170, 24, 0.15);
+}
+
+.admin-form-group textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.admin-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.admin-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.admin-form-message {
+  margin-top: 12px;
+  font-size: 12px;
+  min-height: 18px;
+}
+
+.admin-form-message.error {
+  color: var(--red);
+}
+
+.admin-form-message.success {
+  color: var(--green);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  margin-bottom: 0;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .admin-form-row {
+    grid-template-columns: 1fr;
   }
 }

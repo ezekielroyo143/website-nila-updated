@@ -38,12 +38,16 @@
 .reservation-summary-card,
 .payment-card {
   background: white;
-
   border: 1px solid var(--border);
-
   border-radius: 16px;
-
   padding: 32px;
+  box-shadow: 0 8px 30px rgba(20, 30, 25, 0.05);
+  transition: box-shadow 0.25s ease;
+}
+
+.reservation-form-card:hover,
+.reservation-summary-card:hover {
+  box-shadow: 0 12px 40px rgba(20, 30, 25, 0.08);
 }
 
 .section-heading {
@@ -114,6 +118,7 @@
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(35, 72, 59, 0.12);
 }
 
 .form-group textarea {
